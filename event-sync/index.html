@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FlowSphere - Intelligent Venue Experience</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- View Toggle (For demonstration purposes) -->
+        <div class="view-toggle">
+            <button class="toggle-btn active" id="btn-companion-view">Companion App</button>
+            <button class="toggle-btn" id="btn-brain-view">Venue Brain</button>
+        </div>
+
+        <!-- ========================================== -->
+        <!--  USER COMPANION VIEW                       -->
+        <!-- ========================================== -->
+        <div id="companion-view" class="view-layer active">
+            <!-- Top Navigation -->
+            <header class="app-header">
+                <div class="user-context">
+                    <div class="avatar">SJ</div>
+                    <div class="location-info">
+                        <h2>Screen 4 - IMAX</h2>
+                        <p>Seat M24, Grand Balcony</p>
+                    </div>
+                </div>
+                <div class="online-status">
+                    <span class="pulse-indicator"></span> 
+                    <span>Sync Live</span>
+                </div>
+            </header>
+
+            <main class="main-content">
+                
+                <!-- Smart Timeline Sync -->
+                <section class="glass-card timeline-card" id="timeline-card">
+                    <div class="card-header">
+                        <h3>Event Timeline</h3>
+                        <span class="badge" id="event-status-badge">Playing</span>
+                    </div>
+                    
+                    <div class="timeline-hero">
+                        <div class="movie-title">Dune: Part Two</div>
+                        <div class="timeline-progress-container">
+                            <div class="timeline-bar">
+                                <div class="timeline-fill" id="timeline-fill" style="width: 30%"></div>
+                                <div class="interval-marker" style="left: 50%"></div>
+                            </div>
+                            <div class="timeline-labels">
+                                <span>Start</span>
+                                <span>Interval</span>
+                                <span>End</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contextual-nudge" id="primary-nudge">
+                        <div class="nudge-icon">🎬</div>
+                        <div class="nudge-text">
+                            <h4 id="nudge-title">Movie Playing</h4>
+                            <p id="nudge-desc">Enjoy the show. We'll notify you before the interval starts.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Micro-Moment Alert Area (Hidden by default) -->
+                <section class="glass-card micro-alert hidden" id="micro-alert">
+                    <div class="alert-content">
+                        <span class="flash-icon">⚡</span>
+                        <div>
+                            <h4>Smart Nudge</h4>
+                            <p id="micro-alert-text">Popcorn queues are currently empty. Quick refill before interval?</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Smart Pathing & Live Pulse -->
+                <section class="glass-card pathing-section">
+                    <div class="card-header">
+                        <h3>Smart Pathing & Live Pulse</h3>
+                        <button class="icon-btn">↻</button>
+                    </div>
+                    
+                    <div class="facility-list" id="facility-pulse-list">
+                        <!-- Rendered by JS -->
+                    </div>
+                </section>
+
+                <!-- Predictive Wait Intelligence -->
+                <section class="glass-card predict-section">
+                    <div class="card-header">
+                        <h3>Wait Intelligence</h3>
+                    </div>
+                    <div class="predict-chart">
+                        <div class="insight-box">
+                            <span class="insight-icon">🔮</span>
+                            <p id="predict-text"><strong>Prediction:</strong> Washroom A congestion expected in <span class="highlight">15 mins</span> when the interval hits.</p>
+                        </div>
+                    </div>
+                </section>
+                
+            </main>
+        </div>
+
+        <!-- ========================================== -->
+        <!--  VENUE BRAIN (ADMIN DASHBOARD)             -->
+        <!-- ========================================== -->
+        <div id="brain-view" class="view-layer hidden">
+            <header class="app-header brain-header">
+                <div class="user-context">
+                    <div class="brain-icon">🧠</div>
+                    <div class="location-info">
+                        <h2>Venue Brain</h2>
+                        <p>Global Operations Dashboard</p>
+                    </div>
+                </div>
+                <div class="online-status brain-status">
+                    <span class="pulse-indicator alert-pulse"></span> 
+                    <span>Monitoring</span>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <!-- Macroscopic Metrics -->
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-val">4.2k</div>
+                        <div class="metric-label">Active Flow</div>
+                    </div>
+                    <div class="metric-card alert">
+                        <div class="metric-val" id="bottleneck-count">1</div>
+                        <div class="metric-label">Bottlenecks</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">98%</div>
+                        <div class="metric-label">Sync Rate</div>
+                    </div>
+                </div>
+
+                <!-- Zone Heatmaps -->
+                <section class="glass-card">
+                    <div class="card-header">
+                        <h3>Live Zone Densities</h3>
+                    </div>
+                    <div class="heatmap-grid" id="heatmap-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- AI Operational Suggestions -->
+                <section class="glass-card">
+                    <div class="card-header">
+                        <h3>AI Flow Suggestions</h3>
+                    </div>
+                    <div class="ai-suggestion-list" id="ai-suggestion-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+    </div>
+
+    <!-- Micro-moment Toast -->
+    <div class="notification-toast hidden" id="toast">
+        <div class="toast-content" id="toast-message">Notification here</div>
+    </div>
+
+    <script type="module" src="/src/app.js"></script>
+</body>
+</html>
